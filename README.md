@@ -21,3 +21,10 @@ BrightPath Academy aims to proactively assist students by predicting their acade
 - Filled missing **categorical values** with **mode**.
 - Removed GPA outliers using IQR method.
 
+## Evaluation Metrics for the Classification Problem
+
+- Accuracy
+- Precision
+- Recall
+- F1-Score
+
