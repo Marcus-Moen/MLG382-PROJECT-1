@@ -2,6 +2,7 @@ from dash import Dash, html, dcc, Output, Input
 import dash_bootstrap_components as dbc
 import pandas as pd
 from dash import dash_table
+import plotly.express as px
 
 df = pd.read_csv('Student_Performance_data.csv')
 
