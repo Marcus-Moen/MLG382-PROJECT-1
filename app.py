@@ -8,7 +8,7 @@ import torch.nn as nn
 
 # Load your data and trained model
 df = pd.read_csv('Student_Performance_data.csv')
-# model = joblib.load('your_model.pkl')  # Replace with your actual model file
+model = joblib.load('model.joblib')  # Replace with your actual model file
 
 # Initialize the Dash app
 app = Dash(__name__, external_stylesheets=[
@@ -137,10 +137,24 @@ def predict_grade(n_clicks, study, absences, parental, tutoring, extra):
     tutoring_support = 1 if tutoring == 'Yes' else 0
     extracurricular = 1 if extra == 'Yes' else 0
 
-    input_data = np.array([[study, absences, parental_support, tutoring_support, extracurricular]])
+    input_data = pd.DataFrame({
+        'Age':17,
+        'Gender':1,
+        'Ethnicity':0,
+        'ParentalEducation':5,
+        'StudyTimeWeekly':4,
+        'Absences':3,
+        'Tutoring':1,
+        'ParentalSupport':1,
+        'Sports':1,
+        'Music':0,
+        'Volunteering':0,
+        'TotalExtracurricular':1,
+        'ParentalEduSupport':4,
+    })
     prediction = model.predict(input_data)[0]
 
-    return f'🎓 Predicted Grade Class: **{prediction}**'
+    return f'Predicted Grade Class: **{prediction}**'
 
 
 # To run the app 
