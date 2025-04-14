@@ -3,6 +3,8 @@ import dash_bootstrap_components as dbc
 import pandas as pd
 import numpy as np
 import joblib
+import torch
+import torch.nn as nn
 
 # Load your data and trained model
 df = pd.read_csv('Student_Performance_data.csv')
