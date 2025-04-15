@@ -9,10 +9,10 @@ import os
 import os
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-csv_path = os.path.join(BASE_DIR, 'Student_Performance_data.csv')
+# csv_path = os.path.join(BASE_DIR, 'Student_Performance_data.csv')
 model_path = os.path.join(BASE_DIR, 'model.joblib')
 
-df = pd.read_csv(csv_path)
+# df = pd.read_csv(csv_path)
 model = joblib.load(model_path)
 
 # Initialize the Dash app
