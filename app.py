@@ -14,6 +14,9 @@ app = Dash(__name__, external_stylesheets=[
     "https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap"
 ])
 
+# This if for Render
+server = app.server
+
 # Layout of the Dash app
 app.layout = dbc.Container([
     html.Br(),
@@ -36,47 +39,44 @@ app.layout = dbc.Container([
                                style={'fontSize': '20px', 'fontWeight': 'bold'}),
 
                 dbc.CardBody([
+                        dbc.Label(["Age ", dbc.Badge("?", id="tooltip-age", color="info", className="ms-1")], style={'color': 'white'}),
+                        dcc.Input(id="input-age", type="number", min=10, max=25, value=17, style={'width': '100%', 'marginBottom': '15px', 'color': 'black'}),
 
-            # UI additions 
-                        dbc.Label("Age", style={'color': 'white'}),
-                        dcc.Input(id="input-age", type="number", min=10, max=25, value=17, style={'width': '100%', 'marginBottom': '15px'}),
+                        dbc.Label(["Gender ", dbc.Badge("?", id="tooltip-gender", color="info", className="ms-1")], style={'color': 'white'}),
+                        dcc.Dropdown(['Male', 'Female'], 'Male', id='input-gender', style={'width': '100%', 'marginBottom': '15px', 'color': 'black'}),
 
-                        dbc.Label("Gender", style={'color': 'white'}),
-                        dcc.Dropdown(['Male', 'Female'], 'Male', id='input-gender', style={'width': '100%', 'marginBottom': '15px'}),
+                        dbc.Label(["Ethnicity ", dbc.Badge("?", id="tooltip-ethnicity", color="info", className="ms-1")], style={'color': 'white'}),
+                        dcc.Dropdown(['Caucasian', 'African American', 'Asian', 'Other'], 'Ethnicity', id='input-ethnicity', style={'width': '100%', 'marginBottom': '15px', 'color': 'black'}),
 
-                        dbc.Label("Ethnicity", style={'color': 'white'}),
-                        dcc.Dropdown(['Group A', 'Group B', 'Group C', 'Group D', 'Group E'], 'Group A', id='input-ethnicity', style={'width': '100%', 'marginBottom': '15px'}),
+                        dbc.Label(["Parental Education Level ", dbc.Badge("?", id="tooltip-parentaledu", color="info", className="ms-1")], style={'color': 'white'}),
+                        dcc.Dropdown(['None', 'Primary', 'Secondary', 'Tertiary'], 'Secondary', id='input-parentaledu', style={'width': '100%', 'marginBottom': '15px', 'color': 'black'}),
 
-                        dbc.Label("Parental Education Level", style={'color': 'white'}),
-                        dcc.Dropdown(['None', 'Primary', 'Secondary', 'Tertiary'], 'Secondary', id='input-parentaledu', style={'width': '100%', 'marginBottom': '15px'}),
+                        dbc.Label(["Weekly Study Time (hours) ", dbc.Badge("?", id="tooltip-studytime", color="info", className="ms-1")], style={'color': 'white'}),
+                        dcc.Input(id="input-studytime", type="number", min=0, step=1, value=10, style={'width': '100%', 'marginBottom': '15px', 'color': 'black'}),
 
-                        dbc.Label("Weekly Study Time (hours)", style={'color': 'white'}),
-                        dcc.Input(id="input-studytime", type="number", min=0, step=1, value=10, style={'width': '100%', 'marginBottom': '15px'}),
+                        dbc.Label(["Days Absent ", dbc.Badge("?", id="tooltip-absences", color="info", className="ms-1")], style={'color': 'white'}),
+                        dcc.Input(id="input-absences", type="number", min=0, step=1, value=5, style={'width': '100%', 'marginBottom': '15px', 'color': 'black'}),
 
-                        dbc.Label("Days Absent", style={'color': 'white'}),
-                        dcc.Input(id="input-absences", type="number", min=0, step=1, value=5, style={'width': '100%', 'marginBottom': '15px'}),
+                        dbc.Label(["Tutoring ", dbc.Badge("?", id="tooltip-tutoring", color="info", className="ms-1")], style={'color': 'white'}),
+                        dcc.Dropdown(['Yes', 'No'], 'No', id='input-tutoring', style={'width': '100%', 'marginBottom': '15px', 'color': 'black'}),
 
-                        dbc.Label("Tutoring", style={'color': 'white'}),
-                        dcc.Dropdown(['Yes', 'No'], 'No', id='input-tutoring', style={'width': '100%', 'marginBottom': '15px'}),
+                        dbc.Label(["Parental Support Level ", dbc.Badge("?", id="tooltip-parental", color="info", className="ms-1")], style={'color': 'white'}),
+                        dcc.Dropdown([0, 1, 2, 3], 2, id='input-parental', style={'width': '100%', 'marginBottom': '15px', 'color': 'black'}),
 
-                        dbc.Label("Parental Support Level", style={'color': 'white'}),
-                        dcc.Dropdown([0, 1, 2, 3], 2, id='input-parental', style={'width': '100%', 'marginBottom': '15px'}),
+                        dbc.Label(["Sports Participation ", dbc.Badge("?", id="tooltip-sports", color="info", className="ms-1")], style={'color': 'white'}),
+                        dcc.Dropdown(['Yes', 'No'], 'No', id='input-sports', style={'width': '100%', 'marginBottom': '15px', 'color': 'black'}),
 
-                        dbc.Label("Sports Participation", style={'color': 'white'}),
-                        dcc.Dropdown(['Yes', 'No'], 'No', id='input-sports', style={'width': '100%', 'marginBottom': '15px'}),
+                        dbc.Label(["Music Participation ", dbc.Badge("?", id="tooltip-music", color="info", className="ms-1")], style={'color': 'white'}),
+                        dcc.Dropdown(['Yes', 'No'], 'Yes', id='input-music', style={'width': '100%', 'marginBottom': '15px', 'color': 'black'}),
 
-                        dbc.Label("Music Participation", style={'color': 'white'}),
-                        dcc.Dropdown(['Yes', 'No'], 'Yes', id='input-music', style={'width': '100%', 'marginBottom': '15px'}),
+                        dbc.Label(["Volunteering ", dbc.Badge("?", id="tooltip-volunteering", color="info", className="ms-1")], style={'color': 'white'}),
+                        dcc.Dropdown(['Yes', 'No'], 'No', id='input-volunteering', style={'width': '100%', 'marginBottom': '15px', 'color': 'black'}),
 
-                        dbc.Label("Volunteering", style={'color': 'white'}),
-                        dcc.Dropdown(['Yes', 'No'], 'No', id='input-volunteering', style={'width': '100%', 'marginBottom': '15px'}),
+                        dbc.Label(["Total Extracurricular Activities ", dbc.Badge("?", id="tooltip-total-extra", color="info", className="ms-1")], style={'color': 'white'}),
+                        dcc.Input(id="input-total-extra", type="number", min=0, step=1, value=1, style={'width': '100%', 'marginBottom': '15px', 'color': 'black'}),
 
-                        dbc.Label("Total Extracurricular Activities", style={'color': 'white'}),
-                        dcc.Input(id="input-total-extra", type="number", min=0, step=1, value=1, style={'width': '100%', 'marginBottom': '15px'}),
-
-                        dbc.Label("Parental Education Support", style={'color': 'white'}),
-                        dcc.Input(id="input-parentaledusupport", type="number", min=0, step=1, value=4, style={'width': '100%', 'marginBottom': '25px'}),
-
+                        dbc.Label(["Parental Education Support ", dbc.Badge("?", id="tooltip-parentaledusupport", color="info", className="ms-1")], style={'color': 'white'}),
+                        dcc.Input(id="input-parentaledusupport", type="number", min=0, step=1, value=4, style={'width': '100%', 'marginBottom': '25px', 'color': 'black'}),
 
                     dbc.Button("🎯 Predict Grade Class", id='predict-button', color='primary',
                                style={
@@ -89,9 +89,10 @@ app.layout = dbc.Container([
 
                     html.Div(id='prediction-output', style={
                         'fontSize': 26,
-                        'color': '#FFD700',
+                        'color': '#FFFFED',
+                        'fontWeight': 'bold',
                         'textAlign': 'center',
-                        'transition': 'all 0.3s ease-in-out',
+                        'transition': 'all 0.5s ease-in-out',
                         'fontFamily': 'Poppins, sans-serif'
                     }),
                 ])
@@ -119,18 +120,20 @@ app.layout = dbc.Container([
     'padding': '20px'})
 
 
-# app.layout.children.append(
-#     dbc.Tooltip("Does the student receive help from parents with schoolwork?",
-#                 target="tooltip-parental", placement='right', style={'fontSize': '14px'})
-# )
-# app.layout.children.append(
-#     dbc.Tooltip("Is the student enrolled in extra tutoring sessions?",
-#                 target="tooltip-tutoring", placement='right', style={'fontSize': '14px'})
-# )
-# app.layout.children.append(
-#     dbc.Tooltip("Is the student involved in extracurricular activities?",
-#                 target="tooltip-extra", placement='right', style={'fontSize': '14px'})
-# )
+app.layout.children.append(dbc.Tooltip("Enter the student's age (10–25 years old).", target="tooltip-age", placement='right'))
+app.layout.children.append(dbc.Tooltip("Select the student's gender identity.", target="tooltip-gender", placement='right'))
+app.layout.children.append(dbc.Tooltip("Choose the student's ethnicity or cultural background.", target="tooltip-ethnicity", placement='right'))
+app.layout.children.append(dbc.Tooltip("Highest level of education completed by either parent.", target="tooltip-parentaledu", placement='right'))
+app.layout.children.append(dbc.Tooltip("Total weekly hours spent studying outside of class.", target="tooltip-studytime", placement='right'))
+app.layout.children.append(dbc.Tooltip("Number of school days the student has missed.", target="tooltip-absences", placement='right'))
+app.layout.children.append(dbc.Tooltip("Is the student receiving extra academic tutoring?", target="tooltip-tutoring", placement='right'))
+app.layout.children.append(dbc.Tooltip("Scale from 0–3 indicating parental involvement/support.", target="tooltip-parental", placement='right'))
+app.layout.children.append(dbc.Tooltip("Is the student involved in sports activities?", target="tooltip-sports", placement='right'))
+app.layout.children.append(dbc.Tooltip("Is the student participating in any music-related activities?", target="tooltip-music", placement='right'))
+app.layout.children.append(dbc.Tooltip("Is the student engaged in volunteering work?", target="tooltip-volunteering", placement='right'))
+app.layout.children.append(dbc.Tooltip("Number of extracurricular activities the student participates in.", target="tooltip-total-extra", placement='right'))
+app.layout.children.append(dbc.Tooltip("How much support is provided by parents toward the student’s education.", target="tooltip-parentaledusupport", placement='right'))
+
 
 
 @app.callback(
@@ -159,7 +162,7 @@ def predict_grade(n_clicks, age, gender, ethnicity, parental_edu, study, absence
     # Encode categorical values based on your training set
     gender = 1 if gender == 'Male' else 0
 
-    ethnicity_mapping = {'Group A': 0, 'Group B': 1, 'Group C': 2, 'Group D': 3, 'Group E': 4}
+    ethnicity_mapping = {'Caucasian': 0, 'African American': 1, 'Asian': 2, 'Other': 3}
     ethnicity = ethnicity_mapping.get(ethnicity, 0)
 
     edu_mapping = {'None': 0, 'Primary': 1, 'Secondary': 2, 'Tertiary': 3}
@@ -190,10 +193,10 @@ def predict_grade(n_clicks, age, gender, ethnicity, parental_edu, study, absence
     # Ensure the model expects this DataFrame format. If the model expects a numpy array, convert it.
     prediction = model.predict(input_data)[0]
 
-    return f'🎓 Predicted Grade Class: **{prediction}**'
+    return f'Predicted Grade Class: {prediction}'
 
 
 # To run the app 
 
-if __name__ == '__main__':
- app.run(debug=True) 
+if __name__ == "__main__":
+    app.run(debug=True)
