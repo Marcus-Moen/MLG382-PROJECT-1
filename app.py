@@ -3,10 +3,17 @@ import dash_bootstrap_components as dbc
 import pandas as pd
 import numpy as np
 import joblib
+import os
 
 # Load your data and trained model
-df = pd.read_csv('Student_Performance_data.csv')
-model = joblib.load('model.joblib')  # Replace with your actual model file
+import os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+csv_path = os.path.join(BASE_DIR, 'Student_Performance_data.csv')
+model_path = os.path.join(BASE_DIR, 'model.joblib')
+
+df = pd.read_csv(csv_path)
+model = joblib.load(model_path)
 
 # Initialize the Dash app
 app = Dash(__name__, external_stylesheets=[
