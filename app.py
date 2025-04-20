@@ -143,6 +143,15 @@ app.layout.children.append(dbc.Tooltip("How much support is provided by parents 
 
 
 
+# Grade mapping dictionary
+grade_mapping = {
+    0: 'A',
+    1: 'B',
+    2: 'C',
+    3: 'D',
+    4: 'F'
+}
+
 @app.callback(
     Output('prediction-output', 'children'),
     Input('predict-button', 'n_clicks'),
@@ -199,8 +208,9 @@ def predict_grade(n_clicks, age, gender, ethnicity, parental_edu, study, absence
 
     # Ensure the model expects this DataFrame format. If the model expects a numpy array, convert it.
     prediction = model.predict(input_data)[0]
+    decoded_grade = grade_mapping.get(prediction, "Unknown")
 
-    return f'Predicted Grade Class: {prediction}'
+    return f'Predicted Grade Class: {decoded_grade}'
 
 
 # To run the app 
