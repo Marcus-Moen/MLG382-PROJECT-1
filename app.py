@@ -206,7 +206,7 @@ def predict_grade(n_clicks, age, gender, ethnicity, parental_edu, study, absence
         'ParentalEduSupport': [parental_edu_support],
     })
 
-    # Ensure the model expects this DataFrame format. If the model expects a numpy array, convert it.
+    # Ensure the model expects this DataFrame format.
     prediction = model.predict(input_data)[0]
     decoded_grade = grade_mapping.get(prediction, "Unknown")
 
